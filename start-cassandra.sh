@@ -1,1 +1,0 @@
-docker run -p 9042:9042 --name bogus-cassandra -d spotify/cassandra

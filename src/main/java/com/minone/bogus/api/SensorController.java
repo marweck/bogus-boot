@@ -29,7 +29,7 @@ public class SensorController {
 
 		Page<Tweet> tweets = tweetService.findAll(new PageRequest(page, size));
 
-		return new HttpEntity<Page<Tweet>>(tweets);
+		return new HttpEntity<>(tweets);
 	}
 
 	@RequestMapping(value = "sensor/tweet", method = RequestMethod.POST)
@@ -37,7 +37,7 @@ public class SensorController {
 
 		Tweet tweet = tweetService.createTweet(cmd);
 
-		return new HttpEntity<Tweet>(tweet);
+		return new HttpEntity<>(tweet);
 	}
 
 	@RequestMapping(value = "sensor/tweet/{id}", method = RequestMethod.GET)
@@ -45,6 +45,6 @@ public class SensorController {
 
 		Tweet tweet = tweetService.findById(id);
 
-		return new HttpEntity<Tweet>(tweet);
+		return new HttpEntity<>(tweet);
 	}
 }
