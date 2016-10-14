@@ -14,8 +14,12 @@ import com.minone.bogus.model.dto.CreateTweetCmd;
 @Service
 public class TweetService {
 
-	@Autowired
 	private TweetRepository tweetRepository;
+
+	@Autowired
+	public TweetService(TweetRepository tweetRepository) {
+		this.tweetRepository = tweetRepository;
+	}
 
 	public Tweet createTweet(CreateTweetCmd cmd) {
 

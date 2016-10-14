@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +20,14 @@ import com.minone.bogus.service.TweetService;
 @RestController
 public class SensorController {
 
-	@Autowired
 	private TweetService tweetService;
 
-	@RequestMapping(value = "sensor/tweet", method = RequestMethod.GET)
+	@Autowired
+	public SensorController(TweetService tweetService) {
+		this.tweetService = tweetService;
+	}
+
+	@GetMapping(value = "sensor/tweet")
 	public HttpEntity<Page<Tweet>> getAll(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "500") int size) {
 
@@ -32,7 +36,7 @@ public class SensorController {
 		return new HttpEntity<>(tweets);
 	}
 
-	@RequestMapping(value = "sensor/tweet", method = RequestMethod.POST)
+	@PostMapping(value = "sensor/tweet")
 	public HttpEntity<Tweet> savePosition(@Valid @RequestBody CreateTweetCmd cmd) {
 
 		Tweet tweet = tweetService.createTweet(cmd);
@@ -40,7 +44,7 @@ public class SensorController {
 		return new HttpEntity<>(tweet);
 	}
 
-	@RequestMapping(value = "sensor/tweet/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "sensor/tweet/{id}")
 	public HttpEntity<Tweet> getById(@PathVariable String id) {
 
 		Tweet tweet = tweetService.findById(id);
