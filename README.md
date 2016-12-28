@@ -12,7 +12,7 @@ same as issuing the following command:
 $. docker run -p 27017:27017 --name bogus-mongo -d mongo
 ```
 
-To build a docker image with this spring-boot app, use in the terminal:
+To build a docker image for this spring-boot app, use in the terminal:
 
 ```
 $. mvn package docker:build
