@@ -20,5 +20,5 @@ class TweetLoadTest extends Simulation {
     )
   }
 
-  setUp(scn.inject(rampUsers(1000) over (30 seconds)))
+  setUp(scn.inject(rampUsers(5000) over (30 seconds)))
 }

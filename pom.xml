@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.minone</groupId>
   <artifactId>bogus</artifactId>
@@ -11,13 +11,12 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.1.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <version>2.0.0.M6</version>
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <gatling.version>2.1.7</gatling.version>
+    <gatling.version>2.2.0</gatling.version>
     <java.version>1.8</java.version>
     <run.jvmArguments>-Xmx800m -Xms256m</run.jvmArguments>
   </properties>
@@ -90,4 +89,18 @@
       </plugin>
     </plugins>
   </build>
+
+  <!-- Add Spring repositories -->
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <url>http://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <url>http://repo.spring.io/milestone</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
