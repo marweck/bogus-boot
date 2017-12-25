@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class TweetService {
@@ -22,7 +23,7 @@ public class TweetService {
 
     public Tweet createTweet(CreateTweetCmd cmd) {
 
-        Assert.notNull(cmd);
+        Assert.notNull(cmd, "null cmd object");
 
         Tweet tweet = cmd.toModel();
 
@@ -31,16 +32,16 @@ public class TweetService {
         return tweetRepository.save(tweet);
     }
 
-    public Tweet findById(String id) {
+    public Optional<Tweet> findById(String id) {
 
-        Assert.notNull(id);
+        Assert.notNull(id, "null id");
 
-        return tweetRepository.findOne(id);
+        return tweetRepository.findById(id);
     }
 
     public Page<Tweet> findAll(Pageable page) {
 
-        Assert.notNull(page);
+        Assert.notNull(page, "null page object");
 
         return tweetRepository.findAll(page);
     }

@@ -1,4 +1,9 @@
-FROM lwieske/java-8:server-jre-8u102-slim
+FROM openjdk:8-jre-alpine
+
 VOLUME /tmp
-ADD bogus-0.0.1.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+ENV ENV_MONGO_HOST=mongo
+
+ADD bogus.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  bogus:
+    image: com.minone/bogus
+    links:
+      - mongo
+    ports:
+      - "8080:8080"

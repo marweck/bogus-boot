@@ -17,6 +17,8 @@ import com.minone.bogus.model.Tweet;
 import com.minone.bogus.model.dto.CreateTweetCmd;
 import com.minone.bogus.service.TweetService;
 
+import java.util.Optional;
+
 @RestController
 public class SensorController {
 
@@ -47,8 +49,8 @@ public class SensorController {
 	@GetMapping(value = "sensor/tweet/{id}")
 	public HttpEntity<Tweet> getById(@PathVariable String id) {
 
-		Tweet tweet = tweetService.findById(id);
+		Optional<Tweet> tweet = tweetService.findById(id);
 
-		return new HttpEntity<>(tweet);
+		return new HttpEntity<>(tweet.get());
 	}
 }
