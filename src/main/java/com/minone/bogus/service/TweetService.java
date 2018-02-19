@@ -16,7 +16,6 @@ public class TweetService {
 
     private TweetRepository tweetRepository;
 
-    @Autowired
     public TweetService(TweetRepository tweetRepository) {
         this.tweetRepository = tweetRepository;
     }

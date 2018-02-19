@@ -1,8 +1,7 @@
 package com.minone.bogus.model.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.minone.bogus.model.Tweet;
 
