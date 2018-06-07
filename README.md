@@ -33,3 +33,4 @@ If you prefer running the app outside Docker, just issue:
 ```
 $. mvn spring-boot:run
 ```
+That's it.
