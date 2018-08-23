@@ -1,9 +1,10 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:jre-alpine
 
 VOLUME /tmp
 
 ENV ENV_MONGO_HOST=mongo
 
-ADD bogus.jar app.jar
+ARG JAR_FILE
+ADD target/${JAR_FILE} app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
