@@ -41,11 +41,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework.restdocs</groupId>
-      <artifactId>spring-restdocs-mockmvc</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>io.gatling.highcharts</groupId>
       <artifactId>gatling-charts-highcharts</artifactId>
       <version>${gatling.version}</version>
