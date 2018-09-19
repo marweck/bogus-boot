@@ -29,7 +29,7 @@ public class SensorController {
 	public HttpEntity<Page<Tweet>> getAll(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "500") int size) {
 
-		Page<Tweet> tweets = tweetService.findAll(new PageRequest(page, size));
+		Page<Tweet> tweets = tweetService.findAll(PageRequest.of(page, size));
 
 		return new HttpEntity<>(tweets);
 	}
