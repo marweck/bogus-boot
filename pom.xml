@@ -60,7 +60,7 @@
       <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
-        <version>1.4.4</version>
+        <version>1.4.5</version>
         <executions>
           <execution>
             <id>default</id>
@@ -72,7 +72,9 @@
         <configuration>
           <repository>com.minone/bogus</repository>
           <tag>${project.version}</tag>
-          <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          <buildArgs>
+            <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
         </configuration>
       </plugin>
     </plugins>
