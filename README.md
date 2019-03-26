@@ -1,6 +1,7 @@
 # bogus-boot
 
 ## How to use it
+
 This is a simple example of containerized spring-boot java application.
 
 It depends on a mongodb instance available at port 27017.
@@ -15,7 +16,7 @@ $. docker run -p 27017:27017 --name bogus-mongo -d mongo
 To build a docker image for this spring-boot app, use in the terminal:
 
 ```
-$. mvn package docker:build
+$. mvn package
 ```
 
 We use the great docker-maven-plugin from Spotify (also my favorite music streaming service) to create 
@@ -25,7 +26,7 @@ After building our docker image, we can start our app using the ```start-app.sh`
 which is the same as typing the following command:
 
 ```
-$. docker run -p 8080:8080 --name bogus -d com.minone/bogus
+$. docker run -p 8080:8080 --name bogus -d com.minone/bogus:0.0.1
 ```
 
 If you prefer running the app outside Docker, just issue:

@@ -64,7 +64,7 @@ public class SubnetFilter implements Filter {
         InetAddress ip = InetAddress.getByName(servletRequest.getRemoteAddr());
         BigInteger remote = ipToNumber(ip);
 
-        //are both IPs on the same subnet?
+        // are both IPs on the same subnet?
         boolean sameSubnet = subnet.equals(remote.and(mask));
 
         if (sameSubnet) {
@@ -82,7 +82,7 @@ public class SubnetFilter implements Filter {
 
         InterfaceAddress interfaceAddress = getInterfaceAddress(localHost);
 
-        //8, 16, 24...
+        // 8, 16, 24...
         short prefixLength = interfaceAddress.getNetworkPrefixLength();
 
         int length = interfaceAddress.getAddress().getAddress().length;
@@ -119,26 +119,6 @@ public class SubnetFilter implements Filter {
         byte[] bytes = ip.getAddress();
 
         return new BigInteger(1, bytes);
-    }
-
-    public static void main(String[] args) throws UnknownHostException, SocketException {
-
-        InetAddress ip = InetAddress.getByName("192.168.0.1");
-//        InetAddress ip = InetAddress.getByName("2001:db8:c001:ba40::1");
-        System.out.println(ipToNumber(ip));
-
-        InetAddress ip2 = InetAddress.getByName("192.168.0.2");
-//        InetAddress ip2 = InetAddress.getByName("2001:db8:c001:ba40::2");
-        System.out.println(ipToNumber(ip2));
-
-        InetAddress localHost = InetAddress.getLocalHost();
-
-        BigInteger mask = calculateMask(localHost);
-
-        BigInteger localAddress = ipToNumber(ip);
-        BigInteger remote = ipToNumber(ip2);
-
-        System.out.println((localAddress.and(mask)).equals(remote.and(mask)));
     }
 
     @Override

@@ -14,9 +14,9 @@ public class BogusApplication {
     }
 
     @Bean
-    public FilterRegistrationBean subnetFilter() {
+    public FilterRegistrationBean<SubnetFilter> subnetFilter() {
 
-        FilterRegistrationBean registration = new FilterRegistrationBean();
+        FilterRegistrationBean<SubnetFilter> registration = new FilterRegistrationBean<>();
 
         registration.setFilter(new SubnetFilter());
         registration.addUrlPatterns("/health");
