@@ -17,7 +17,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <gatling.version>2.2.0</gatling.version>
-    <java.version>11</java.version>
+    <java.version>12</java.version>
     <run.jvmArguments>-Xmx800m -Xms256m</run.jvmArguments>
   </properties>
 
@@ -26,17 +26,13 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
     </dependency>
-    <dependency>
+    <!--dependency>
       <groupId>de.flapdoodle.embed</groupId>
       <artifactId>de.flapdoodle.embed.mongo</artifactId>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
     <dependency>
@@ -57,9 +53,6 @@
       <plugin>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-maven-plugin</artifactId>
-	<configuration>
-	  <executable>true</executable>
-	</configuration>
       </plugin>
       <plugin>
 	<groupId>com.spotify</groupId>
