@@ -17,6 +17,8 @@ ENV LANG=C.UTF-8 \
     PATH=$PATH:/opt/jre/bin \
     ENV_MONGO_HOST=mongo
 
+VOLUME /tmp
+
 ARG JAR_FILE
 ADD target/${JAR_FILE} /opt/app/app.jar
 
