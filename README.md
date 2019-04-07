@@ -26,7 +26,7 @@ After building our docker image, we can start our app using the ```start-app.sh`
 which is the same as typing the following command:
 
 ```
-$. docker run -p 8080:8080 --name bogus -it com.minone/bogus:0.0.1
+$. docker run -p 8080:8080 --name bogus -it --rm com.minone/bogus:0.0.1
 ```
 
 If you prefer running the app outside Docker, just issue:
