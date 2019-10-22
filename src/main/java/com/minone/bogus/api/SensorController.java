@@ -27,7 +27,7 @@ public class SensorController {
 
 	@GetMapping(value = "sensor/tweet")
 	public HttpEntity<Page<Tweet>> getAll(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "500") int size) {
+			@RequestParam(defaultValue = "50") int size) {
 
 		Page<Tweet> tweets = tweetService.findAll(PageRequest.of(page, size));
 
