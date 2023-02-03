@@ -1,9 +1,8 @@
 package com.minone.bogus.model.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 import com.minone.bogus.model.Tweet;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CreateTweetCmd {
 

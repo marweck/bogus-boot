@@ -6,3 +6,7 @@ target
 bogus.iml
 /.idea/
 /target/
+.git/
+build/
+.gradle/
+gradle

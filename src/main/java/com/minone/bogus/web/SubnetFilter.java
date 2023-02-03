@@ -1,12 +1,5 @@
 package com.minone.bogus.web;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -15,24 +8,13 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletResponse;
+
 /**
  * Servlet filter that allows requests coming from same subnet only.
  * <p>
  * Conversion from InetAddress to Long: https://stackoverflow.com/a/34881294
- * <p>
- * Example declaring on a web.xml file
- *
- * <pre>
- * <filter>
- *   <filter-name>SubnetFilter</filter-name>
- *   <filter-class>com.acme.web.SubnetFilter</filter-class>
- * </filter>
- *
- * <filter-mapping>
- *   <filter-name>SubnetFilter</filter-name>
- *   <url-pattern>/metrics</url-pattern>
- * </filter-mapping>
- * </pre>
  */
 public class SubnetFilter implements Filter {
 
@@ -41,8 +23,7 @@ public class SubnetFilter implements Filter {
     private BigInteger subnet;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
+    public void init(final FilterConfig filterConfig) throws ServletException {
         try {
             InetAddress localHost = InetAddress.getLocalHost();
 
@@ -51,14 +32,15 @@ public class SubnetFilter implements Filter {
             BigInteger localAddress = ipToNumber(localHost);
 
             this.subnet = localAddress.and(mask);
-
         } catch (UnknownHostException | SocketException e) {
             throw new ServletException(e);
         }
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+    public void doFilter(final ServletRequest servletRequest,
+                         final ServletResponse servletResponse,
+                         final FilterChain filterChain)
             throws IOException, ServletException {
 
         InetAddress ip = InetAddress.getByName(servletRequest.getRemoteAddr());
@@ -70,7 +52,7 @@ public class SubnetFilter implements Filter {
         if (sameSubnet) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            HttpServletResponse response = (HttpServletResponse) servletResponse;
+            final HttpServletResponse response = (HttpServletResponse) servletResponse;
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Origin not allowed");
         }
     }
@@ -78,7 +60,7 @@ public class SubnetFilter implements Filter {
     /**
      * Calculates the IP maks of the given localhost address
      */
-    private static BigInteger calculateMask(InetAddress localHost) throws SocketException {
+    private static BigInteger calculateMask(final InetAddress localHost) throws SocketException {
 
         InterfaceAddress interfaceAddress = getInterfaceAddress(localHost);
 
@@ -93,7 +75,7 @@ public class SubnetFilter implements Filter {
     /**
      * Locates the interface address of the given InetAddress
      */
-    private static InterfaceAddress getInterfaceAddress(InetAddress localHost) throws SocketException {
+    private static InterfaceAddress getInterfaceAddress(final InetAddress localHost) throws SocketException {
 
         NetworkInterface networkInterface = NetworkInterface.getByInetAddress(localHost);
 
@@ -114,7 +96,7 @@ public class SubnetFilter implements Filter {
     /**
      * Converts InetAddress to a number representing the given IP
      */
-    private static BigInteger ipToNumber(InetAddress ip) {
+    private static BigInteger ipToNumber(final InetAddress ip) {
 
         byte[] bytes = ip.getAddress();
 
