@@ -6,22 +6,19 @@ This is a simple example of containerized spring-boot java application.
 
 It depends on a mongodb instance available at port 27017.
 
-Use the script ```start-mongo.sh``` to start a dockerized MongoDb instance, which is the
-same as issuing the following command:
+Use the command below to start a dockerized MongoDb instance:
 
 ```
 $. docker run -p 27017:27017 --name bogus-mongo -d mongo
 ```
 
+### Docker Image
+
 To build a docker image for this spring-boot app, use in the terminal:
 
 ```
-$. mvn package
+$. gradle bootBuildImage
 ```
-
-We use the great docker-maven-plugin from Spotify (also my favorite music streaming service) to create 
-a docker image with the just built app.jar.
-
 After building our docker image, we can start our app using the ```start-app.sh``` script,
 which is the same as typing the following command:
 
@@ -29,9 +26,14 @@ which is the same as typing the following command:
 $. docker run -p 8080:8080 --name bogus -it --rm com.minone/bogus:0.0.1
 ```
 
-If you prefer running the app outside Docker, just issue:
+### Native App
+
+To create a graalvm native executable for this application, execute:
 
 ```
-$. mvn spring-boot:run
+$. gradle nativeCompile
 ```
-That's it.
+NOTE: GraalVM 22.3+ is required.
+
+After completed, this command will generate the executable file in the folder:
+`./build/native/nativeCompile`
